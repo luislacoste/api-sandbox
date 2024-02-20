@@ -1,0 +1,60 @@
+DataIntegrationClientApi
+devuelve el response del api
+
+
+user le aparece el arbol del archivo de la datatable
+
+
+export form -- guardadatatableacsv (335) -- dgv
+
+
+##################
+
+release/1-1-2-0
+
+<add name="Conciliac.EntitiesDbContext" connectionString="Data Source=(localdb)\ConciliacDB;Initial Catalog=ConciliacEDM;Integrated Security=SSPI;MultipleActiveResultSets=true;" providerName="System.Data.SqlClient"/>
+
+.net 4.6.2
+
+------------------------------
+format to get data = [{name:'luis', surname:'Lacoste'}, {name:'Juani', surname:'Fransoy'}] list of json's
+--- asi mismo la vamos a mandar --- hay otra forma? no se, falta testear
+
+
+al enum agregarle api
+y un nuevo case... dejarlo como un console writeline
+
+
+
+-----------------------------
+update: logre mandarlo a api
+
+Pendientes:
+    * Ver en que formato exportar la informacion
+    * manejo de errores y devolucion. ejemplo timeout
+    * ver que informacion queremos que se mande
+    * file structure? quiero otro archivo o todo en el mismo
+    * commentarios
+    * revisar como se agarra la info de la api y como se maneja el timeout (posible mejoras)
+
+Formatos para enviar info:
+    1. notes/json_formats/1.json
+    2. notes/json_formats/2.json
+
+
+last problem:
+si el api esta apagada se queda esperando y no da error
+
+{Method = {System.Threading.Tasks.Task SendDataToApi(System.String, System.String)}}
+
+-----
+forma, selecciona el APIConecctor al que le quiere mandar (ideal que solo muestre los post y put methods (no los get))
+
+asi se agarra la data --> public APIConnectors ApiConnectorConfig = new APIConnectors(); 
+y de ahi se le da a var response = ApiConnectorConfig.CallApi();
+y de ahi sigue como CallApiGeneric en DataIntegrationClientApi que tiene metodos async raros xd 
+case Constants.Constants.POST:
+    response = httpClient.PostAsync(requestUri, content).Result;
+
+en post me dio este result 
+{StatusCode: 200, ReasonPhrase: 'OK', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:{  Connection: keep-alive  Keep-Alive: timeout=5  Date: Tue, 13 Feb 2024 21:44:40 GMT  ETag: W/"1f-5neQYipg97lqhSjGrBFatGvgGW0"  X-Powered-By: Express  Content-Length: 31  Content-Type: application/json; charset=utf-8}}
