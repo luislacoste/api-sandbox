@@ -3,3 +3,6 @@
 /node_modules
 /packages
 large-file.json
+
+# Ignore notes folder
+/notes
