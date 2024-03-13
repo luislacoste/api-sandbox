@@ -2,18 +2,19 @@
     {"UserRecordStatus":3,"Difference":0,"C01":"luis","C02":"Lacoste"},
     {"UserRecordStatus":3,"Difference":0,"C01":"Juani","C02":"Fransoy"}
 ]
-foreach (GridColumn col in dgv.Columns)
+
+for (int rowHandle = 0; rowHandle < dgv.DataRowCount; rowHandle++)
 {
-    if (!col.Visible)
-        continue;
+    Dictionary<string, object> row = new Dictionary<string, object>();
 
-    Dictionary<String, object> row = new Dictionary<String, object>();
-    row["ColumnName"] = col.FieldName;
-
-    for (int rowHandle = 0; rowHandle < dgv.DataRowCount; rowHandle++)
+    foreach (GridColumn col in dgv.Columns)
     {
+        if (!col.Visible)
+            continue;
+
         object cellValue = dgv.GetRowCellValue(rowHandle, col);
-        row[$"Row{rowHandle + 1}"] = cellValue;
+        row[col.FieldName] = cellValue;
     }
+
     rows.Add(row);
 }

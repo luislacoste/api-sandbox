@@ -1,1 +1,0 @@
-cuando mapeas una api que no existe corta la app

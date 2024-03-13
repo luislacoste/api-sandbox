@@ -80,3 +80,29 @@ ExportForm.cs
     * que tenga los dos chkExterno_CheckedChanged y chkInterno_CheckedChanged que estan en Conciliac-EDM\src\UI\ExportForm.cs
 
 ejemplo en notes/ExportForn_api.png
+
+-------
+
+server no existe o api incorrecto parametros
+C:\Users\luisl\Documents\Conciliac-EDM\src\Common\DataIntegration\DataIntegrationClientApi.cs
+linea 81
+
+
+NO credentials
+System.Net.HttpStatusCode.Unauthorized
+response.StatusCode == "Unauthorized"
+
+
+NO Server
+$expception.InnerException.Message = "Unable to connect to the remote server"
+
+
+user field c01
+
+---------------
+mensaje de error
+MessageBoxErrorForm ef = new MessageBoxErrorForm(Messages.Error, ex);
+ef.ShowDialog();
+
+-------------------------
+Falta que el boton se habilite cuando seleccione el api configuration
